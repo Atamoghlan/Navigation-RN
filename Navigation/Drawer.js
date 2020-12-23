@@ -10,7 +10,6 @@ export const Drawer = ({navigation}) => {
     return (
     <MyDrawer.Navigator
     initialRouteName='Home'>
-      
         <MyDrawer.Screen name='News' component={StackNews}/>
         <MyDrawer.Screen name='Entertainment' component={StackEntertainment}/>
         <MyDrawer.Screen name='Tools' component={StackTools}/>
