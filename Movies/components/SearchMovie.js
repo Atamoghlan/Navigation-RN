@@ -10,7 +10,8 @@ export const SearchMovie = (props) => {
           placeholder={' e.g. superman'}
               onChangeText = {handledChangedText}>
           </TextInput>
-          <TouchableOpacity style={{marginHorizontal: 5,borderWidth: 6, borderColor: "#D3D3D3", backgroundColor: 'blue', width: "28%",height: 55, alignSelf: "center"}} onPress={()=>findMovie()}>
+          <TouchableOpacity style={{marginHorizontal: 5,borderWidth: 6, borderColor: "#D3D3D3", backgroundColor: 'blue', width: "28%",height: 55, alignSelf: "center"}}
+            onPress={()=>findMovie()}>
               <Text style={{fontSize: 30, alignSelf: 'center', color: 'white'}}>Search</Text>
           </TouchableOpacity>
         </View>
