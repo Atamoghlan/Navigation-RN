@@ -8,11 +8,15 @@ export const Entertainment = ({navigation, route}) => {
     return (
         <View 
         style={{flexDirection: 'row',flexWrap: 'wrap'}}>
-            
             <TouchableOpacity 
             onPress={() => navigation.toggleDrawer()}>
             <Image source={mainMenulogo}
             style={styles.MenuLogoButton} />
+            </TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => navigation.navigate("MoviesApp")}>
+            <Image source={require("../Images/MoviesLogo.jpg")}
+            style={styles.calcLogoButton} />
             </TouchableOpacity>
             <Text>Entertainment</Text>
         </View>
