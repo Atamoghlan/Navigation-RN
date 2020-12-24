@@ -3,10 +3,10 @@ import {Text, View, Button, TouchableOpacity,Image} from 'react-native'
 import { styles } from "./Entertainment";
 
 mainMenulogo = require("../Images/MainMenu.jpg")
-export const AboutMe = ({navigation, route}) => {
+export const Settings = ({navigation, route}) => {
     return (
         <View 
-        style={{}}>
+        style={{flexDirection: 'row',flexWrap: 'wrap'}}>
             
             <TouchableOpacity 
             onPress={() => navigation.toggleDrawer()}>
@@ -14,7 +14,7 @@ export const AboutMe = ({navigation, route}) => {
             style={styles.MenuLogoButton} />
             </TouchableOpacity>
             <Text
-            style={{fontSize: 40}}>Welcome to my Profile</Text>
+            style={{fontSize: 40}}>Settings</Text>
         </View>
     )
 }

@@ -20,13 +20,15 @@ export const Entertainment = ({navigation, route}) => {
 }
 export const styles = StyleSheet.create({
     calcLogoButton:{
-        width: 130, 
-        height: 130,
-        borderRadius: 15
+        width: 80, 
+        height: 80,
+        borderRadius: 15,
+        margin: 5
     },
     MenuLogoButton:{
-        width: 120, 
-        height: 120,
-        borderRadius: 15
+        width: 70, 
+        height: 70,
+        borderRadius: 15,
+        margin: 5
     }
 })

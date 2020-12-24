@@ -173,14 +173,14 @@ OnClick = (button) => {
             })
         }
         else {
-            this.Booleans();
+            this.booleans();
             this.setState({
                 resultText: ''
                 })
             }
             break;
         case 'C':
-            this.Booleans();
+            this.booleans();
             this.setState({
                 resultText: ''
             })
