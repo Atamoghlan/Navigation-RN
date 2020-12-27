@@ -17,6 +17,7 @@ export default class Movie extends Component {
       changedData: []
     }
   }
+  inputData = [];
   searchUrl = '';
   searchText = ''
     name=''
@@ -38,13 +39,14 @@ export default class Movie extends Component {
 
   findMovie = () => {
     //console.log('findmovie')
-    this.setState(prevState => ({userInput: prevState.userInput = this.searchText}));
-    this.componentDidUpdate()
+    this.setState(prevState => ({data: prevState.data = this.inputData}));
+    
   } 
   
   handledChangedText = (newText) =>{
     this.searchText = newText
     this.searchUrl = url + newText
+    this.componentDidUpdate()
     //console.log('handledChangedText')
   }
   componentDidMount = async() => {
@@ -64,7 +66,8 @@ export default class Movie extends Component {
       try{
         const response = await fetch(this.searchUrl)
         const data = await response.json()
-        this.setState(prevState => ({data: prevState.data = data}))
+        this.inputData = data
+        // this.setState(prevState => ({data: prevState.data = data}))
       }
       catch(e){
         console.log('URL is wrong')
@@ -94,7 +97,7 @@ export default class Movie extends Component {
              description= item?.show?.summary;
               return (
              <TouchableOpacity key={index} onPress={()=>this.workModal(item.show)}>      
-                <Text style={{ width:125, height: 60,marginHorizontal: 9 ,marginTop: 20,fontSize: 25, color: 'white'}}>{item.show.name}</Text>
+                <Text style={styles.text}>{item.show.name}</Text>
                 <Image style={{width:125,height:150,borderRadius: 15, margin: 9}} source={icon}/>
              </TouchableOpacity>
           )           
@@ -105,7 +108,6 @@ export default class Movie extends Component {
           description={this.description}
           modalWindow={this.state.modalWindow}
           onPress={this.workModal}/>
-
         </View>
            </ScrollView>
       </View>
@@ -115,5 +117,13 @@ export default class Movie extends Component {
 const styles=StyleSheet.create({
   container: {
     marginTop: 30
+  },
+  text: {
+    width:125, 
+    height: 60,
+    marginHorizontal: 9 ,
+    marginTop: 20,
+    fontSize: 25, 
+    color: 'white'
   }
 })
