@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, View, Button, TouchableOpacity, Image} from 'react-native'
+import {Text, View, Button, TouchableOpacity, Image, StyleSheet} from 'react-native'
 import { styles } from "./Entertainment";
 import {createStackNavigator} from '@react-navigation/stack'
 import { Calc } from "../Calc/Calc";
@@ -11,7 +11,7 @@ export const StackToolsMenu = createStackNavigator
 export const Tools = ({navigation, route}) => {
     return (
         <View 
-        style={{flexDirection: 'row',flexWrap: 'wrap'}}>
+        style={styles2.view}>
             <TouchableOpacity 
             onPress={() => navigation.toggleDrawer()}>
             <Image source={mainMenulogo}
@@ -22,7 +22,9 @@ export const Tools = ({navigation, route}) => {
             <Image source={calcLogo}
             style={styles.calcLogoButton} />
             </TouchableOpacity>
-            <Text>Tools</Text>
         </View>
     )
 }
+const styles2 = StyleSheet.create({
+    view: {flexDirection: 'row',flexWrap: 'wrap'}
+})

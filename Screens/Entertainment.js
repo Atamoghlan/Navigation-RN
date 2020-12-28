@@ -18,8 +18,7 @@ export const Entertainment = ({navigation, route}) => {
             <Image source={require("../Images/MoviesLogo.jpg")}
             style={styles.calcLogoButton} />
             </TouchableOpacity>
-            <Text>Entertainment</Text>
-        </View>
+            </View>
     )
 }
 export const styles = StyleSheet.create({

@@ -7,7 +7,7 @@ import { WebView } from "react-native-webview";
 mainMenulogo = require("../Images/MainMenu.jpg")
 export const News = ({navigation, route}) => {
     return (
-        <View style={{flex:1}}>
+        <View style={newsStyles.view}>
             <WebView source={{uri: 'https://edition.cnn.com/?refresh=1'}}/>
             <View
             style={{alignItems: 'center'}}>
@@ -28,5 +28,6 @@ const newsStyles = StyleSheet.create({
         borderRadius: 15,
         alignSelf: 'flex-end',
         margin: 5
-    } 
+    },
+    view: {flex:1}
 })
