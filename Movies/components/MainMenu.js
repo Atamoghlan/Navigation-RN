@@ -54,7 +54,12 @@ class MainMenu extends Component {
   }
 
   
-
+  // checkForAdding = (show) => {
+  //   const checkID = this.props.list.filter(item => item.id === show.id);
+  //   if (checkID.length === 0) {
+  //     this.props.favMovies(show);
+  //   }
+  // }
 
   componentDidUpdate = async() => {
       // try{
@@ -147,7 +152,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = state => {
   return {
-    data: state.ReducerForSearch.data
+    data: state.ReducerForSearch.data,
+    list: state.ReducerForFavourite.movieList
   }
 }
 const myApp = connect(mapStateToProps, mapDispatchToProps)(MainMenu);
