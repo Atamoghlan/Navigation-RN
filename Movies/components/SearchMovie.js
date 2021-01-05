@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity,StyleSheet } from 'react-native';
 
 export const SearchMovie = (props) => {
     const {handledChangedText , findMovie} = props;
@@ -10,9 +10,9 @@ export const SearchMovie = (props) => {
           placeholder={' e.g. superman'}
               onChangeText = {handledChangedText}>
           </TextInput>
-          <TouchableOpacity style={styles.findButtonText}
+          <TouchableOpacity style={styles.findButton}
             onPress={()=>findMovie()}>
-              <Text styles={styles.findButton}>Search</Text>
+              <Text styles={styles.findButtonText}>Search</Text>
           </TouchableOpacity>
         </View>
     )
@@ -20,18 +20,19 @@ export const SearchMovie = (props) => {
 
 const styles = StyleSheet.create({
   view: {
-    flexDirection: "row", flexWrap: 'wrap', width: "100%"
+    flexDirection: "row", flex: 1
 },
  textSearch: {
    marginVertical: 10, backgroundColor: 'white', 
- fontSize: 25, width: 300
+ fontSize: 25, flex: 0.75
 },
 findButtonText: {
-  fontSize: 30, alignSelf: 'center', color: 'white'
+  color: 'white', textAlign: 'center'
 },
 findButton: {
   marginHorizontal: 5,borderWidth: 6, borderColor: "#D3D3D3", 
-  backgroundColor: 'blue', width: "28%",
-  height: 55,alignSelf: "center"
+  backgroundColor: 'blue', flex: 0.25,
+  alignSelf: "center", justifyContent: 'center',height: 55, backgroundColor: 'white', alignItems: 'center'
+  
 }
 })

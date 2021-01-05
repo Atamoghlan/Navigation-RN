@@ -1,6 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack'
 import React, {Component} from 'react'
-import Movie from '../Movies/Movie';
+import { MoviesMenu } from '../Movies/components/TabNavigator';
 import { Entertainment } from '../Screens/Entertainment';
 
 export const RootStackEntertainment = createStackNavigator();
@@ -11,7 +11,7 @@ export const StackEntertainment = ({navigation, route}) => {
             title: "Entertainment"
         }}>
         <RootStackEntertainment.Screen name='Entertainment' component={Entertainment}/>
-        <RootStackEntertainment.Screen name='MoviesApp' component={Movie}/>
+        <RootStackEntertainment.Screen name='MoviesApp' component={MoviesMenu}/>
         </RootStackEntertainment.Navigator>
     )
 }

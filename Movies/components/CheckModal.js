@@ -1,6 +1,5 @@
 import React from 'react';
 import { View ,Image, Text, TouchableOpacity, ScrollView, Modal, StyleSheet} from 'react-native';
-import { styles } from '../../Screens/Entertainment';
 
 export const CheckModal = (props) => {
     const {icon, name, description, onPress, modalWindow} = props;
@@ -14,7 +13,7 @@ export const CheckModal = (props) => {
                     <Text style={mStyles.name}>{name}</Text>
                     <Text style={mStyles.text}>{description?.replace(/(<([^>]+)>)/gi, "")? description?.replace(/(<([^>]+)>)/gi, ""):"No Description"}</Text>
                     <TouchableOpacity onPress={onPress}>
-                        <Text style={styles.textInTouchable}>Close</Text>
+                        <Text style={mStyles.textInTouchable}>Close</Text>
                     </TouchableOpacity>
                 </ScrollView>
              </Modal>
@@ -35,12 +34,24 @@ const mStyles = StyleSheet.create({
         fontSize: 20
     }, 
     text: {
-        marginTop: 10,
+        margin: 10,
         textAlign: 'center',
         fontSize: 15
     },
     textInTouchable:{
         width: 80,height: 35,marginTop: 10,textAlign: 'center',
         backgroundColor: 'red', alignSelf: 'center', fontSize: 25
+    },
+    calcLogoButton:{
+        width: 80, 
+        height: 80,
+        borderRadius: 15,
+        margin: 5
+    },
+    MenuLogoButton:{
+        width: 70, 
+        height: 70,
+        borderRadius: 15,
+        margin: 5
     }
 })
