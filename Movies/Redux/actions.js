@@ -1,10 +1,9 @@
-import {myLogger} from '../../App'
-
 let movieId = 0;
-
+export const FETCH_URL = 'FetchUrl'
+export const SEARCH_MOVIE = 'Search_Movie'
 export const searchMovie = (data) => {
     return ({
-        type: 'Search_Movie',
+        type: SEARCH_MOVIE ,
         payload: {
             data: data
         }
@@ -38,20 +37,8 @@ export const deleteMovie = (index) => {
     })
 }
 
-export const fetchUrl = (dispatch, url, text) => {
-    console.log('from fetch url=',url, text)
-    return async() => {
-    try
-    {
-        url1=url+text
-      console.log('before fetch last call', url1)
-      const response = await fetch(url1)
-      const data = await response.json()
-      dispatch(searchMovie(data))
+export const fetchUrl = () => {
+    return {
+        type: FETCH_URL
     }
-    catch(e)
-    {
-     console.log("URL is wrong")
-    }
-  }
 }

@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { View, ScrollView, StyleSheet, TextInput ,Image, Text, TouchableOpacity} from 'react-native';
 import {CheckModal} from '../components/CheckModal';
 import { SearchMovie } from "../components/SearchMovie";
-import { favouriteList, fetchUrl } from "../Redux/actions";
+import { searchMovie, favouriteList, fetchUrl } from "../Redux/actions";
 import { connect } from "react-redux";
+
+export let url = 'http://api.tvmaze.com/search/shows?q=' 
+export let myDefaultSearch = 'batman'
 
 class MainMenu extends Component {
   constructor(props) {
@@ -15,8 +18,6 @@ class MainMenu extends Component {
     }
     
   }
-  url = 'http://api.tvmaze.com/search/shows?q=' 
-  myDefaultSearch = 'batman'
  
   inputData = [];
   searchUrl = '';
@@ -39,27 +40,21 @@ class MainMenu extends Component {
   }
 
   findMovie = () => {
-    this.props.goToFetch(this.url, this.searchText)
+    this.props.goToFetch()
   } 
   
   handledChangedText = (newText) =>{
-    this.searchText = newText
-    this.searchUrl = this.url + newText
+    myDefaultSearch = newText
+    this.searchUrl = url + newText
     this.componentDidUpdate()
     //console.log('handledChangedText')
   }
   componentDidMount = () => {
-    console.log('my url=', this.url, 'my search=', this.myDefaultSearch)
-    this.props.goToFetch(this.url, this.myDefaultSearch)
+    this.props.goToFetch()
   }
 
   
-  // checkForAdding = (show) => {
-  //   const checkID = this.props.list.filter(item => item.id === show.id);
-  //   if (checkID.length === 0) {
-  //     this.props.favMovies(show);
-  //   }
-  // }
+
 
   componentDidUpdate = async() => {
       // try{
@@ -86,7 +81,7 @@ class MainMenu extends Component {
           <SearchMovie
           handledChangedText={this.handledChangedText}
           findMovie={this.findMovie}/>
-          <Text style={styles.searchText}>You are searching: {this.myDefaultSearch} </Text>
+          <Text style={styles.searchingText}>You are searching: {myDefaultSearch} </Text>
           {/* {console.log(this.state.data)}, */}
           <View style={styles.mapView}>
         
@@ -95,9 +90,9 @@ class MainMenu extends Component {
              name = item?.show?.name;
              description= item?.show?.summary;
               return (
-                <View>
+                <View key={index}>
                 <Text style={styles.text}>{item.show.name}</Text>
-             <TouchableOpacity key={index} 
+             <TouchableOpacity 
              onPress={()=>this.workModal(item.show)}>      
                 <Image style={styles.icon} source={icon}/>
              </TouchableOpacity>
@@ -121,7 +116,7 @@ class MainMenu extends Component {
     )
   }
 }
-const styles = StyleSheet.create({
+const styles=StyleSheet.create({
   container: {
     marginTop: 30
   },
@@ -134,17 +129,16 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   mainView: {backgroundColor: "black"},
-  searchText: {backgroundColor: 'white', fontSize: 22, marginVertical: 10, color:'white', backgroundColor: 'black'},
+  searchingText: {backgroundColor: 'white', fontSize: 22, marginVertical: 10, color:'white', backgroundColor: 'black'},
   mapView: {flexWrap: 'wrap', flexDirection: 'row', backgroundColor: "black"},
   icon: {width:125,height:150,borderRadius: 15,margin: 9},
   heartTO: {width: 45, height: 45, margin: 5, marginLeft: 50},
   heartImage: {width:45, height:45}
-
 })
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      goToFetch: (url, search) =>  dispatch(fetchUrl(dispatch, url, search)),
+      goToFetch: () =>  dispatch(fetchUrl()),
       favMovies: (movie) => dispatch(favouriteList(movie)), 
       dispatch
 
@@ -152,8 +146,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = state => {
   return {
-    data: state.ReducerForSearch.data,
-    list: state.ReducerForFavourite.movieList
+    data: state.ReducerForSearch.data
   }
 }
 const myApp = connect(mapStateToProps, mapDispatchToProps)(MainMenu);
