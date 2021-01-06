@@ -23,7 +23,7 @@ class MainMenu extends Component {
   searchText = ''
     name=''
     description=''
-    icon=''
+    icon = require("../images/popcorn.jpg")
   workModal = (item) => {
     this.setState({
       modalWindow: !this.state.modalWindow
@@ -95,9 +95,9 @@ class MainMenu extends Component {
              name = item?.show?.name;
              description= item?.show?.summary;
               return (
-                <View>
+                <View key={index}>
                 <Text style={styles.text}>{item.show.name}</Text>
-             <TouchableOpacity key={index} 
+             <TouchableOpacity  
              onPress={()=>this.workModal(item.show)}>      
                 <Image style={styles.icon} source={icon}/>
              </TouchableOpacity>
