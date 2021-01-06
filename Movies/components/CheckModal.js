@@ -5,6 +5,7 @@ export const CheckModal = (props) => {
     const {icon, name, description, onPress, modalWindow} = props;
     // console.log(description)
     // console.log(name)
+    console.log('=========================================>',icon)
     return(
         <View>
             <Modal visible={modalWindow}>

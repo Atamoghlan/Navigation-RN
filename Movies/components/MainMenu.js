@@ -24,7 +24,7 @@ class MainMenu extends Component {
   searchText = ''
     name=''
     description=''
-    icon=''
+    icon = require("../images/popcorn.jpg");
   workModal = (item) => {
     this.setState({
       modalWindow: !this.state.modalWindow
