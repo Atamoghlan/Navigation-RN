@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, TextInput ,Image, Text, TouchableOpacity} from 'react-native';
+import { View, ScrollView, StyleSheet ,Image, Text, TouchableOpacity} from 'react-native';
 import {CheckModal} from '../components/CheckModal';
 import { SearchMovie } from "../components/SearchMovie";
 import { searchMovie, favouriteList, fetchUrl } from "../Redux/actions";
@@ -52,7 +52,12 @@ class MainMenu extends Component {
   componentDidMount = () => {
     this.props.goToFetch()
   }
-
+  checkForAddToFavourite = (show) => {
+    const check = this.props.list.filter(item => item.name === show.name);
+    if (check.length === 0) {
+      this.props.favMovies(show.name, show.image);
+    }
+  }
   
 
 
@@ -97,7 +102,7 @@ class MainMenu extends Component {
                 <Image style={styles.icon} source={icon}/>
              </TouchableOpacity>
              <TouchableOpacity style={styles.heartTO}
-             onPress={() => this.props.favMovies(item.show)}>
+             onPress={() => this.checkForAddToFavourite(item.show)}>
                   <Image style={styles.heartImage}
                   source={heart}/>
                 </TouchableOpacity>
@@ -139,14 +144,15 @@ const styles=StyleSheet.create({
 const mapDispatchToProps = (dispatch) => {
   return {
       goToFetch: () =>  dispatch(fetchUrl()),
-      favMovies: (movie) => dispatch(favouriteList(movie)), 
+      favMovies: (name, image) => dispatch(favouriteList(name, image)), 
       dispatch
 
   }
 }
 const mapStateToProps = state => {
   return {
-    data: state.ReducerForSearch.data
+    data: state.ReducerForSearch.data,
+    list: state.ReducerForFavourite.movieList
   }
 }
 const myApp = connect(mapStateToProps, mapDispatchToProps)(MainMenu);

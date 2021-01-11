@@ -9,13 +9,13 @@ export const searchMovie = (data) => {
         }
     })
 }
-export const favouriteList = (movie) => {
+export const favouriteList = (name, image) => {
     return ({
         type: 'Add_to_favourite_List',
         payload: {
             movieList: {
-                icon: movie.image?{uri: movie.image.medium}: require("../images/popcorn.jpg"),
-                name: movie.name
+                icon: image?{uri: image.medium}: require("../images/popcorn.jpg"),
+                name: name
             }
         }
     })

@@ -1,6 +1,7 @@
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { fetchUrl,FETCH_URL , searchMovie } from "./actions";
 import { url, myDefaultSearch } from "../components/MainMenu";
+
 const fetchData = () => {
         try
         {
