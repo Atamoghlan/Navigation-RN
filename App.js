@@ -1,31 +1,33 @@
 import React, {Component} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
 } from 'react-native';
 
 import {
-  Header,
-  LearnMoreLinks,
   Colors,
-  DebugInstructions,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { Drawer } from "./Navigation/Drawer";
-
+import {createStackNavigator  } from "@react-navigation/stack";
+import CallSplash from './Animations/CallSplash';
+const Stack = createStackNavigator();
 
 
 export default class App extends Component{
   render(){
   return (
+    
     <NavigationContainer>
-      <Drawer/>
-     
+      <Stack.Navigator
+      screenOptions={{headerShown: false}}>
+        <Stack.Screen
+        
+        name="SplashScreen"
+        component={CallSplash}/>
+        <Stack.Screen 
+        name="Drawer"
+        component={Drawer}/>
+      </Stack.Navigator>
     </NavigationContainer>
   );
   }
