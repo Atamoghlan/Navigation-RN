@@ -25,11 +25,9 @@ export default class App extends Component {
 }
   render() {
     return (
-      <NavigationContainer>
         <CallSplash
           isSplashScreenWork={this.state.isSplashScreenWork}
         />
-      </NavigationContainer>
     );
   }
 };

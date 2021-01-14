@@ -11,6 +11,8 @@ export const MyDrawer = createDrawerNavigator();
 
 export const Drawer = () => {
   return (
+
+    <NavigationContainer>
       <MyDrawer.Navigator
         initialRouteName='Home'>
         <MyDrawer.Screen name='News' component={News} />
@@ -18,5 +20,6 @@ export const Drawer = () => {
         <MyDrawer.Screen name='Tools' component={StackTools} />
         <MyDrawer.Screen name='AboutMe' component={TabAboutMe} />
       </MyDrawer.Navigator>
+    </NavigationContainer>
   )
 }
