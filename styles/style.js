@@ -17,10 +17,6 @@ export const splashScreenStyles = StyleSheet.create({
       width: 160,
       height: 160,
     },
-    viewSecond:
-    {
-      flex:1
-    },
     logo:
     {
       alignSelf: 'center', width: 580, height: 580, borderRadius: 105, 

@@ -8,8 +8,7 @@ export default class Splash extends Component {
   constructor() {
     super();
     this.state = {
-      animationValue: new Animated.Value(0.2),
-      animationOpacity: new Animated.Value(0)
+      animationValue: new Animated.Value(0.2)
     }
   }
   componentDidMount() {
@@ -21,7 +20,6 @@ export default class Splash extends Component {
   // }
 
   createAnimation = (value, duration, easing, delay = 0) => {
-    this.state.animationOpacity.setValue(0);
     this.state.animationValue.setValue(0)
     return Animated.timing(
       value,
@@ -38,21 +36,15 @@ export default class Splash extends Component {
   myAnimation = () => {
       this.createAnimation(this.state.animationValue, 4000, Easing.linear, 500).start()
   }
-  loading = () => {
-    this.createAnimation(this.state.animationOpacity, 1000, Easing.linear, 500).start()
-  }
+  
 
   render() {
 
     const logoScale = this.state.animationValue.interpolate({
-      inputRange: [0, 0.40, 0.9, 1],
-      outputRange: [0, 0.45,0.45, 0]
+      inputRange: [0, 0.4, 0.9, 1],
+      outputRange: [0, 0.55,0.55, 0]
     })
-    const loadingOpacity = this.state.animationOpacity.interpolate({
-      inputRange: [0, 0.15, 0.30, 0.45, 0.60, 0.75, 0.90, 1],
-      outputRange: [0, 0.3, 0, 0.45, 0, 0.6, 0, 1]
-    })
-
+    
     return (
       <LinearGradient
         colors={['#4682B4', 'red', '#4682B4']}
@@ -66,13 +58,6 @@ export default class Splash extends Component {
                 style={splashScreenStyles.logo}
                 source={require('../Movies/images/MoviesAppLogo.png')} />
           </Animated.View>
-          <View style={splashScreenStyles.viewSecond}>
-            <Text onPress={this.loading}
-              style={splashScreenStyles.loadingText}>Run Loading</Text>
-            <Animated.Image source={require('../Movies/images/Garfield.png')}
-              style={[splashScreenStyles.loadingImage, {opacity: loadingOpacity} 
-              ]}/>
-          </View>
         </View>
       </LinearGradient>
     );
