@@ -1,11 +1,8 @@
 import Splash from "./SplashScreen";
 import React from 'react';
+import { Drawer } from "../Navigation/Drawer";
 
-export default function CallSplash ({navigation}) {
-    setTimeout(() => {
-        navigation.replace('Drawer')
-    }, 6000)
-    return(
-        <Splash/>
-    )
+export default function CallSplash (isSplashScreenWork) {
+    isSplashScreenWork? answerForSplashScreen=<Splash/> : answerForSplashScreen=<Drawer/>
+    return answerForSplashScreen
 }

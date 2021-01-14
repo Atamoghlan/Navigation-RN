@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
 } from 'react-native';
@@ -7,29 +7,30 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
-import { Drawer } from "./Navigation/Drawer";
-import {createStackNavigator  } from "@react-navigation/stack";
 import CallSplash from './Animations/CallSplash';
-const Stack = createStackNavigator();
 
-
-export default class App extends Component{
-  render(){
-  return (
-    
-    <NavigationContainer>
-      <Stack.Navigator
-      screenOptions={{headerShown: false}}>
-        <Stack.Screen
-        
-        name="SplashScreen"
-        component={CallSplash}/>
-        <Stack.Screen 
-        name="Drawer"
-        component={Drawer}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isSplashScreenWork: true,
+    }
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        isSplashScreenWork: !this.state.isSplashScreenWork
+      })
+}, 6000)
+}
+  render() {
+    return (
+      <NavigationContainer>
+        <CallSplash
+          isSplashScreenWork={this.state.isSplashScreenWork}
+        />
+      </NavigationContainer>
+    );
   }
 };
 
