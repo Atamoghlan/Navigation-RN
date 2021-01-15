@@ -35,18 +35,11 @@ export default class Loading extends Component {
             outputRange: [0, 0.45, 0, 0.6, 0, 1, 0, 1]
           })
           return (
-            <LinearGradient
-              colors={['#4682B4', 'red', '#4682B4']}
-              style={{ flex: 1 }}
-              start={{ x: 1, y: 0 }}
-              end={{ x: 0, y: 1 }}>
-      
               <View style={splashScreenStyles.mainContainer}>
                   <Animated.Image source={require('../Movies/images/Garfield.png')}
                     style={[splashScreenStyles.loadingImage, {opacity: loadingOpacity} 
                     ]}/>
               </View>
-            </LinearGradient>
           );
     }
 }

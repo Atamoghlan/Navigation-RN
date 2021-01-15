@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, StyleSheet ,Image, Text, TouchableOpacity} from 'react-native';
 import {CheckModal} from '../components/CheckModal';
 import { SearchMovie } from "../components/SearchMovie";
-import { searchMovie, favouriteList, fetchUrl } from "../Redux/actions";
+import { favouriteList, fetchUrl } from "../Redux/actions";
 import { connect } from "react-redux";
 
 export let url = 'http://api.tvmaze.com/search/shows?q=' 
