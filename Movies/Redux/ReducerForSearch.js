@@ -8,6 +8,10 @@ export const ReducerForSearch = (state = initialState, action) => {
         return {
             data: action.payload.data
         }
+        case 'Loading_Animation':
+            return{...state,
+              loadingAnimation: action.loadingWorking
+            }
     default: 
     return state;
         }

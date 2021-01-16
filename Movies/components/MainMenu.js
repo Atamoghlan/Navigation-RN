@@ -4,6 +4,7 @@ import {CheckModal} from '../components/CheckModal';
 import { SearchMovie } from "../components/SearchMovie";
 import { favouriteList, fetchUrl } from "../Redux/actions";
 import { connect } from "react-redux";
+import Loading from "../../Animations/LoadingAnimation";
 
 export let url = 'http://api.tvmaze.com/search/shows?q=' 
 export let myDefaultSearch = 'batman'
@@ -88,8 +89,9 @@ class MainMenu extends Component {
           findMovie={this.findMovie}/>
           <Text style={styles.searchingText}>You are searching: {myDefaultSearch} </Text>
           {/* {console.log(this.state.data)}, */}
+          {this.props.loading ? <Loading/>:
           <View style={styles.mapView}>
-        
+
          {this.props.data.map((item,index)=> {
              icon = item.show.image?{uri:item.show.image.medium}: require("../images/popcorn.jpg")
              name = item?.show?.name;
@@ -115,7 +117,7 @@ class MainMenu extends Component {
           description={this.description}
           modalWindow={this.state.modalWindow}
           onPress={this.workModal}/>
-        </View>
+        </View>}
            </ScrollView>
       </View>
     )
@@ -151,6 +153,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = state => {
   return {
+    loading: state.ReducerForSearch.loadingAnimation,
     data: state.ReducerForSearch.data,
     list: state.ReducerForFavourite.movieList
   }

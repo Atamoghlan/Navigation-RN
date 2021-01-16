@@ -9,6 +9,12 @@ export const searchMovie = (data) => {
         }
     })
 }
+export const loading = (loadingBool) => {
+    return({
+        type: 'Loading_Animation',
+        loadingWorking: loadingBool
+    })
+}
 export const favouriteList = (name, image) => {
     return ({
         type: 'Add_to_favourite_List',

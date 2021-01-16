@@ -1,5 +1,5 @@
-import { takeEvery, put, call, select } from 'redux-saga/effects';
-import { fetchUrl,FETCH_URL , searchMovie } from "./actions";
+import { takeEvery, put, call } from 'redux-saga/effects';
+import { loading ,FETCH_URL , searchMovie } from "./actions";
 import { url, myDefaultSearch } from "../components/MainMenu";
 
 const fetchData = () => {
@@ -16,8 +16,13 @@ const fetchData = () => {
       }
 
 function* workerSearchMovie() {
+    
+    yield put(loading(true))
    const data = yield call(fetchData)
+   
+   yield put(loading(false))
    yield put(searchMovie(data))
+   
 }
 
 export function* watchFetchUrl(){

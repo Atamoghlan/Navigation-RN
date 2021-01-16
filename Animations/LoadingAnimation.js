@@ -27,7 +27,7 @@ export default class Loading extends Component {
         )
       }
       loading = () => {
-        this.createAnimation(this.state.animationOpacity, 5000, Easing.linear, 500).start()
+        this.createAnimation(this.state.animationOpacity, 1000, Easing.linear, 500).start(()=> {this.loading()})
       }
       render() {
         const loadingOpacity = this.state.animationOpacity.interpolate({

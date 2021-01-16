@@ -8,26 +8,42 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import CallSplash from './Animations/CallSplash';
+import { AppState, Alert } from "react-native";
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       isSplashScreenWork: true,
+      appState: AppState.currentState
     }
   }
   componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange)
     setTimeout(() => {
       this.setState({
         isSplashScreenWork: !this.state.isSplashScreenWork
       })
-}, 6000)
-}
+    }, 6000)
+  }
+  componentWillUnmount() {
+    AppState.removeEventListener("change", this._handleAppStateChange);
+  }
+
+  _handleAppStateChange = nextAppState => {
+    if (
+      this.state.appState.match(/inactive|background/) &&
+      nextAppState === "active"
+    ) {
+      Alert.alert('', 'Welcome back!',[{text: 'continue'}]);
+    }
+    this.setState({ appState: nextAppState });
+  }
   render() {
     return (
-        <CallSplash
-          isSplashScreenWork={this.state.isSplashScreenWork}
-        />
+      <CallSplash
+        isSplashScreenWork={this.state.isSplashScreenWork}
+      />
     );
   }
 };
