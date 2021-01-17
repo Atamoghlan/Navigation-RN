@@ -1,30 +1,27 @@
 import React from 'react'
-import {Text, View, Button, TouchableOpacity, Image, StyleSheet} from 'react-native'
-import { styles } from "./Entertainment";
+import { View, TouchableOpacity, Image} from 'react-native'
+
+import { entertainment } from "../styles/style";
 import {createStackNavigator} from '@react-navigation/stack'
-import { Calc } from "../Calc/Calc";
 
 calcLogo = require("../Images/Calc.png")
 mainMenulogo = require("../Images/MainMenu.jpg")
 
 export const StackToolsMenu = createStackNavigator
-export const Tools = ({navigation, route}) => {
+export const Tools = ({navigation}) => {
     return (
         <View 
-        style={styles2.view}>
+        style={entertainment.viewMain}>
             <TouchableOpacity 
             onPress={() => navigation.toggleDrawer()}>
             <Image source={mainMenulogo}
-            style={styles.MenuLogoButton} />
+            style={entertainment.MenuLogoButton} />
             </TouchableOpacity>
             <TouchableOpacity
             onPress={() => navigation.navigate("Calculator")}>
             <Image source={calcLogo}
-            style={styles.calcLogoButton} />
+            style={entertainment.calcLogoButton} />
             </TouchableOpacity>
         </View>
     )
 }
-const styles2 = StyleSheet.create({
-    view: {flexDirection: 'row',flexWrap: 'wrap'}
-})

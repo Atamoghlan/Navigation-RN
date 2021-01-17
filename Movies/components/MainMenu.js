@@ -5,6 +5,7 @@ import { SearchMovie } from "../components/SearchMovie";
 import { favouriteList, fetchUrl } from "../Redux/actions";
 import { connect } from "react-redux";
 import Loading from "../../Animations/LoadingAnimation";
+import { mainMenu } from "../../styles/style";
 
 export let url = 'http://api.tvmaze.com/search/shows?q=' 
 export let myDefaultSearch = 'batman'
@@ -48,7 +49,6 @@ class MainMenu extends Component {
     myDefaultSearch = newText
     this.searchUrl = url + newText
     this.componentDidUpdate()
-    //console.log('handledChangedText')
   }
   componentDidMount = () => {
     this.props.goToFetch()
@@ -59,38 +59,31 @@ class MainMenu extends Component {
       this.props.favMovies(show.name, show.image);
     }
   }
-  
-
-
   componentDidUpdate = async() => {
-      // try{
-      //   const response = await fetch(this.searchUrl)
-      //   const data = await response.json()
-      //   this.inputData = data
-      //   // this.setState(prevState => ({data: prevState.data = data}))
-      // }
-      // catch(e){
-      //   console.log('URL is wrong')
-      // }
+    // try{
+    //   const response = await fetch(this.searchUrl)
+    //   const data = await response.json()
+    //   this.inputData = data
+    //   // this.setState(prevState => ({data: prevState.data = data}))
+    // }
+    // catch(e){
+    //   console.log('URL is wrong')
+    // }
 
-    }
+  }
   render (){
-    //const {data} = this.props.data
     let icon = require('../images/popcorn.jpg');
     let heart = require('../images/heart.png');
-    let name = '';
-    let description = '';
-    //console.log (data)
     return (
-      <View style={styles.mainView}>
+      <View style={mainMenu.mainView}>
         <ScrollView>
           <SearchMovie
           handledChangedText={this.handledChangedText}
           findMovie={this.findMovie}/>
-          <Text style={styles.searchingText}>You are searching: {myDefaultSearch} </Text>
+          <Text style={mainMenu.searchingText}>You are searching: {myDefaultSearch} </Text>
           {/* {console.log(this.state.data)}, */}
           {this.props.loading ? <Loading/>:
-          <View style={styles.mapView}>
+          <View style={mainMenu.mapView}>
 
          {this.props.data.map((item,index)=> {
              icon = item.show.image?{uri:item.show.image.medium}: require("../images/popcorn.jpg")
@@ -98,14 +91,14 @@ class MainMenu extends Component {
              description= item?.show?.summary;
               return (
                 <View key={index}>
-                <Text style={styles.text}>{item.show.name}</Text>
+                <Text style={mainMenu.text}>{item.show.name}</Text>
              <TouchableOpacity 
              onPress={()=>this.workModal(item.show)}>      
-                <Image style={styles.icon} source={icon}/>
+                <Image style={mainMenu.icon} source={icon}/>
              </TouchableOpacity>
-             <TouchableOpacity style={styles.heartTO}
+             <TouchableOpacity style={mainMenu.heartTO}
              onPress={() => this.checkForAddToFavourite(item.show)}>
-                  <Image style={styles.heartImage}
+                  <Image style={mainMenu.heartImage}
                   source={heart}/>
                 </TouchableOpacity>
              </View>
@@ -123,26 +116,6 @@ class MainMenu extends Component {
     )
   }
 }
-const styles=StyleSheet.create({
-  container: {
-    marginTop: 30
-  },
-  text: {
-    width:125, 
-    height: 60,
-    marginHorizontal: 9 ,
-    marginTop: 20,
-    fontSize: 25, 
-    color: 'white'
-  },
-  mainView: {backgroundColor: "black"},
-  searchingText: {backgroundColor: 'white', fontSize: 22, marginVertical: 10, color:'white', backgroundColor: 'black'},
-  mapView: {flexWrap: 'wrap', flexDirection: 'row', backgroundColor: "black"},
-  icon: {width:125,height:150,borderRadius: 15,margin: 9},
-  heartTO: {width: 45, height: 45, margin: 5, marginLeft: 50},
-  heartImage: {width:45, height:45}
-})
-
 const mapDispatchToProps = (dispatch) => {
   return {
       goToFetch: () =>  dispatch(fetchUrl()),

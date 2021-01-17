@@ -21,18 +21,10 @@ export default class App extends Component {
       })
     }, 6000)
     netinfo.addEventListener(state => {
-      if (!state.isConnected) {
+      if (!state.isInternetReachable) {
         Alert.alert('', 'No connection')
       }
     })
-  }
-  componentWillUnmount() {
-    AppState.removeEventListener("change", this._handleAppStateChange);
-    netinfo.removeEventListener(state => {
-      if (!state.isConnected) {
-        Alert.alert('', 'No connection')
-      }
-    });
   }
 
   _handleAppStateChange = nextAppState => {

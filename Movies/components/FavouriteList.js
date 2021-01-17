@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, ScrollView, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { clearList, deleteMovie } from "../Redux/actions";
+import { favouriteList } from "../../styles/style";
 
 class FavouriteList extends Component {
     render() {
@@ -13,12 +14,12 @@ class FavouriteList extends Component {
             <View>
                 <ScrollView>
                 <View
-                style={styles.mainView}>
+                style={favouriteList.mainView}>
                     <View>
                         <TouchableOpacity
                         onPress={() => this.props.clear()}>
                             <Image
-                                style={styles.clearBtn}
+                                style={favouriteList.clearBtn}
                                 source={clearIcon}
                                  />
                         </TouchableOpacity>
@@ -26,18 +27,18 @@ class FavouriteList extends Component {
                     {list.map((movie, index) => (
                         <View
                             key={++movieId}
-                            style={styles.mapView}>
+                            style={favouriteList.mapView}>
                             <View>
                                 <Text
-                                    style={styles.movieName}>{movie.name}</Text>
+                                    style={favouriteList.movieName}>{movie.name}</Text>
                                 <Image
-                                    style={styles.movieImage}
+                                    style={favouriteList.movieImage}
                                     source={movie.icon} />
                             </View>
                             <TouchableOpacity
                         onPress={() => this.props.deletemovie(index)}>
                             <Image
-                                style={styles.deleteBtn}
+                                style={favouriteList.deleteBtn}
                                 source={delIcon}
                                  />
                         </TouchableOpacity>
@@ -49,20 +50,6 @@ class FavouriteList extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    mainView: {
-        alignItems: 'center'
-    },
-    clearBtn: { width: 125, height: 65, alignSelf: 'center', marginTop: 10 },
-    mapView: {
-        flexWrap: 'wrap', flexDirection: "column", justifyContent: 'center',
-        backgroundColor: "white"
-    },
-    movieName: {width: 250, height: 45, fontSize: 35, color: 'black', marginTop: 15 },
-    movieImage: { width: 250, height: 250, borderRadius: 20, resizeMode: 'stretch' },
-    deleteBtn: { width: 90, height: 75, alignSelf: 'center', margin: 10, resizeMode: 'stretch' },
-})
 
 const mapStateToProps = state => {
     return {

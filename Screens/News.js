@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { View, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { WebView } from "react-native-webview";
 import Loading from "../Animations/LoadingAnimation";
+import { news } from "../styles/style";
 
 mainMenulogo = require("../Images/MainMenu.jpg")
 export class News extends Component {
@@ -19,31 +20,20 @@ export class News extends Component {
         const { navigation } = this.props;
 
         return (
-            <View style={newsStyles.view}>
+            <View style={news.view}>
                 { this.state.isLoadNews && <Loading/>}
                 <WebView
                     onLoad={() => this.loadNews()}
                     source={{ uri: 'https://edition.cnn.com/?refresh=1' }} />
                 <View
-                    style={{ alignItems: 'center' }}>
+                    style={news.secondView}>
                     <TouchableOpacity
                         onPress={() => navigation.toggleDrawer()}>
                         <Image source={mainMenulogo}
-                            style={newsStyles.MenuLogoButton} />
+                            style={news.menuLogoButton} />
                     </TouchableOpacity>
                 </View>
             </View>
         )
     }
 }
-
-const newsStyles = StyleSheet.create({
-    MenuLogoButton: {
-        width: 90,
-        height: 90,
-        borderRadius: 15,
-        alignSelf: 'flex-end',
-        margin: 5
-    },
-    view: { flex: 1 }
-})

@@ -1,23 +1,20 @@
 import React from 'react'
-import {Text, View, Button, TouchableOpacity,Image, StyleSheet} from 'react-native'
-import { styles } from "./Entertainment";
+import {Text, View, TouchableOpacity,Image} from 'react-native'
+import { entertainment } from "../styles/style";
+import { aboutMe } from "../styles/style";
 
 mainMenulogo = require("../Images/MainMenu.jpg")
 export const AboutMe = ({navigation, route}) => {
     return (
-        <View style={styles2.view}>
+        <View style={aboutMe.view}>
             
             <TouchableOpacity 
             onPress={() => navigation.toggleDrawer()}>
             <Image source={mainMenulogo}
-            style={styles.MenuLogoButton} />
+            style={entertainment.MenuLogoButton} />
             </TouchableOpacity>
             <Text
-            style={styles2.text}>About us</Text>
+            style={aboutMe.text}>About me page</Text>
         </View>
     )
 }
-const styles2 = StyleSheet.create({
-    view: {flex:1},
-    text: {fontSize: 40}
-})

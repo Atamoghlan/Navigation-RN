@@ -6,10 +6,7 @@ import { Entertainment } from '../Screens/Entertainment';
 export const RootStackEntertainment = createStackNavigator();
 export const StackEntertainment = ({navigation, route}) => {
     return (
-        <RootStackEntertainment.Navigator 
-        screenOptions={{
-            title: "Entertainment"
-        }}>
+        <RootStackEntertainment.Navigator>
         <RootStackEntertainment.Screen name='Entertainment' component={Entertainment}/>
         <RootStackEntertainment.Screen name='MoviesApp' component={MoviesMenu}/>
         </RootStackEntertainment.Navigator>

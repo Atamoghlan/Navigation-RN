@@ -1,15 +1,14 @@
-import React, {Component} from 'react'
-import {Text, View, Button} from 'react-native'
+import React from 'react'
 import { AboutMe } from '../Screens/AboutMe';
 import { Settings } from "../Screens/AboutMeSettings";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import { tabAboutMeStyles } from "../styles/style";
+import { tabAboutMe } from "../styles/style";
 
 const Tab = createBottomTabNavigator();
 export const TabAboutMe = ({navigation, route}) => {
     return (
         <Tab.Navigator
-            tabBarOptions={{activeBackgroundColor: '#AFEEEE',labelStyle: {fontSize: 40}}}
+            tabBarOptions={tabAboutMe}
         >
             <Tab.Screen name='Profile' component={AboutMe}/>
             <Tab.Screen name='Settings' component={Settings}/>

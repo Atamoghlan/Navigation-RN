@@ -6,11 +6,7 @@ import { Calc } from "../Calc/Calc";
 export const rootStackTools = createStackNavigator();
 export const StackTools = ({navigation, route}) => {
     return (
-        <rootStackTools.Navigator 
-        screenOptions={{
-            title: "Tools"
-        }}
-        >
+        <rootStackTools.Navigator>
             <rootStackTools.Screen name='Tools' component={Tools}/>
             <rootStackTools.Screen name='Calculator' component={Calc}/>
             
