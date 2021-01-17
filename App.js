@@ -22,7 +22,7 @@ export default class App extends Component {
     }, 6000)
     netinfo.addEventListener(state => {
       if (!state.isInternetReachable) {
-        Alert.alert('', 'No connection')
+        Alert.alert('', 'Check your connection')
       }
     })
   }
@@ -33,6 +33,15 @@ export default class App extends Component {
       Alert.alert('', 'Welcome back!', [{ text: 'continue' }]);
     }
     this.setState({ appState: nextAppState });
+  }
+
+  componentWillUnmount(){
+    AppState.removeEventListener('change', this._handleAppStateChange)
+    netinfo.removeEventListener(state => {
+      if (!state.isInternetReachable){
+        Alert.alert('', 'Check your connection')
+      }
+    })
   }
   render() {
     return (
