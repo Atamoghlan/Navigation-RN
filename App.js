@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-} from 'react-native';
-
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
-import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import CallSplash from './Animations/CallSplash';
 import { AppState, Alert } from "react-native";
+import netinfo from "@react-native-community/netinfo";
 
 export default class App extends Component {
   constructor() {
@@ -25,17 +20,25 @@ export default class App extends Component {
         isSplashScreenWork: !this.state.isSplashScreenWork
       })
     }, 6000)
+    netinfo.addEventListener(state => {
+      if (!state.isConnected) {
+        Alert.alert('', 'No connection')
+      }
+    })
   }
   componentWillUnmount() {
     AppState.removeEventListener("change", this._handleAppStateChange);
+    netinfo.removeEventListener(state => {
+      if (!state.isConnected) {
+        Alert.alert('', 'No connection')
+      }
+    });
   }
 
   _handleAppStateChange = nextAppState => {
-    if (
-      this.state.appState.match(/inactive|background/) &&
-      nextAppState === "active"
-    ) {
-      Alert.alert('', 'Welcome back!',[{text: 'continue'}]);
+    if (this.state.appState.match(/inactive|background/) &&
+      nextAppState === "active") {
+      Alert.alert('', 'Welcome back!', [{ text: 'continue' }]);
     }
     this.setState({ appState: nextAppState });
   }
